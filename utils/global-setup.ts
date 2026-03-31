@@ -1,8 +1,8 @@
 import fs from 'fs';
 
 async function globalSetup() {
-  if (fs.existsSync('reports/allure-results')) {
-    fs.rmSync('reports/allure-results', { recursive: true, force: true });
+  if (fs.existsSync('test-results/allure-results')) {
+    fs.rmSync('test-results/allure-results', { recursive: true, force: true });
   }
 }
 

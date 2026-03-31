@@ -4,7 +4,7 @@ async function globalTeardown() {
   console.log("Generating Allure Report...");
 
   execSync(
-    'npx allure generate reports/allure-results -o reports/allure-report --clean --single-file',
+    'npx allure generate test-results/allure-results -o test-results/allure-report --clean --single-file',
     { stdio: 'inherit' }
   );
 

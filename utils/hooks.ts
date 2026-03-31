@@ -13,7 +13,6 @@ test.beforeEach(async ({ page }) => {
 
   let config: TestConfig = new TestConfig();
   await page.goto(config.appUrl);
-
 });
 
 test.afterEach(async ({ page }) => {
