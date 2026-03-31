@@ -3,7 +3,7 @@ import {allure} from 'allure-playwright';
 import dotenv from 'dotenv';
 
   dotenv.config({
-    path: `env/.env.${process.env.ENV}`,
+    path: `env/.env.${process.env.ENV}`, // process is nodejs object, env contains environment variables, ENV is custom variable name
   })
 
 export default defineConfig({

@@ -14,7 +14,8 @@
     "test:master:headed": "playwright test --grep @master --headed",
     "test:end-to-end": "playwright test --grep @end-to-end --headed",
     "test:sanity:debug": "playwright test --grep @sanity --debug",
-    "test:rerun:failed": "playwright test --last-failed"
+    "test:rerun:failed": "playwright test --last-failed",
+    "test:run":"playwright test tests/Login.spec.ts"
   },
   "devDependencies": {
     "@playwright/test": "^1.58.2",
