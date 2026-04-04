@@ -8,7 +8,7 @@ import { ReusableMethods } from '../utils/reusableMethods';
 import { TestData } from '../utils/testData';
 import { CommonMethods } from '../pages/CommonMethods'
 
-test('User Registration', { tag: ['@smoke'] }, async ({ page, testData }) => {
+test('User Registration', { tag: ['@smoke', '@registration'] }, async ({ page, testData }) => {
   let password = RandomDataUtil.getPassword()
   let registrationPage = new RegistrationPage(page, testData)
   let loginPage = new LoginPage(page)
@@ -35,7 +35,7 @@ test('User Registration', { tag: ['@smoke'] }, async ({ page, testData }) => {
   await loginPage.clickLogin()
 });
 
-test('User Registration Page errors validation for mandatory fields', { tag: ['@negative'] }, async ({ page, testData }) => {
+test('User Registration Page errors validation for mandatory fields', { tag: ['@smoke', '@registration'] }, async ({ page, testData }) => {
   let commonMethods = new CommonMethods(page, testData)
   let registrationPage = new RegistrationPage(page, testData)
 

@@ -6,7 +6,7 @@ import { RegistrationPage } from '../pages/RegistrationPage'
 import { LoginPage } from '../pages/LoginPage'
 import { ReusableMethods } from '../utils/reusableMethods';
 import { TestData } from '../utils/testData';
-import { CommonPage } from '../pages/commonMethods'
+import { CommonMethods } from '../pages/CommonMethods'
 import { ProductsListPage } from '../pages/ProductsListPage'
 
 test('Print products list in excel', { tag: ['@smoke, @writeExcel'] }, async ({ page, testData }) => {
@@ -16,7 +16,6 @@ test('Print products list in excel', { tag: ['@smoke, @writeExcel'] }, async ({ 
   await loginPage.enterEmail(ReusableMethods.getProperty("EMAIL"))
   await loginPage.enterPassword(ReusableMethods.getProperty("PASSWORD"))
   await loginPage.clickLogin()
-
 
   let data: any[] = await productsListPage.getProductsList()
   console.log(data)
