@@ -31,6 +31,18 @@ test.describe('Login with csv data', () => {
   }
 })
 
+const excelPath = 'testdata/logindata.xlsx'
+const excelData = DataProvider.getDataFromXLSX(excelPath)
+
+for (const { Email, Password } of excelData) {
+  test(`User Login with excel data ${Email}`, { tag: ['@smoke', '@login', '@excel'] }, async ({ page }) => {
+    let loginPage = new LoginPage(page);
+    await loginPage.enterEmail(Email)
+    await loginPage.enterPassword(Password)
+    await loginPage.clickLogin()
+  });
+}
+
 test('User Login errors validation for mandatory fields', { tag: ['@smoke', '@login', '@negative'] }, async ({ page, testData }) => {
   //Timeouts  
   test.setTimeout(10000)

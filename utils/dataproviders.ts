@@ -25,6 +25,7 @@ export class DataProvider {
         //convert sheet into json
         const loginData: any = XLSX.utils.sheet_to_json(worksheet);
         console.log(loginData);
+        return loginData
     }
 
     static writeDataToXLSX(filePath: string, sheetName: string, productName: any[]) {
