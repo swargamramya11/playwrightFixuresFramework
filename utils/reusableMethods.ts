@@ -91,4 +91,21 @@ export class ReusableMethods {
 
         throw new Error(`No window found with title: ${partialTitle}`);
     }
+
+    async numberOfFrames() {
+        const frames = this.page.frames();
+        return frames.length
+    }
+
+    async navigateToFrameByURL(frameUrl: string) {
+        return this.page.frame({ url: frameUrl })
+    }
+
+    async navigateToFrameByName(frameName: string) {
+        return this.page.frame({ name: frameName })
+    }
+
+    async navigateToFrameByFrameLocator(frameLocator: string) {
+        return this.page.frameLocator(frameLocator)
+    }
 }

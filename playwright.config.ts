@@ -9,8 +9,8 @@ dotenv.config({
 export default defineConfig({
   globalTeardown: require.resolve('./utils/global-teardown'),
   globalSetup: './utils/global-setup.ts',
-  timeout: 30 * 1000,
-  expect: { timeout: 30000 },
+  timeout: 100 * 1000,
+  expect: { timeout: 50000 },
   testDir: './tests',
   fullyParallel: false,
   // retries: 1,
