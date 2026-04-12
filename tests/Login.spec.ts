@@ -1,4 +1,4 @@
-import { test, expect } from '../utils/hooks';
+import { test } from '../utils/hooks';
 import { DataProvider } from '../utils/dataproviders'
 import { LoginPage } from '../pages/LoginPage'
 import { CommonMethods } from '../pages/CommonMethods'
@@ -6,19 +6,33 @@ import { RegistrationPage } from '../pages/RegistrationPage'
 import { ReusableMethods } from '../utils/reusableMethods';
 
 const jsonPath = 'testdata/logindata.json'
-const data = DataProvider.getTestDataFromJson(jsonPath)
+const jsonData = DataProvider.getTestDataFromJson(jsonPath)
 
-for (const dataset of data) {
-  test(`User Login with ${dataset.email}`, { tag: ['@smoke', '@login'] }, async ({ page }) => {
+const csvPath = 'testdata/logindata.csv'
+const csvData = DataProvider.getDataFromCSV(csvPath)
+
+for (const { email, password } of jsonData) {
+  test(`User Login with json data ${email}`, { tag: ['@smoke', '@login', '@json'] }, async ({ page }) => {
     let loginPage = new LoginPage(page);
-    await loginPage.enterEmail(dataset.email)
-    await loginPage.enterPassword(dataset.password)
+    await loginPage.enterEmail(email)
+    await loginPage.enterPassword(password)
     await loginPage.clickLogin()
   });
 }
 
+test.describe('Login with csv data', () => {
+  for (const { email, password } of csvData) {
+    test(`User Login with csv data ${email}`, { tag: ['@smoke', '@login', '@csv'] }, async ({ page }) => {
+      let loginPage = new LoginPage(page);
+      await loginPage.enterEmail(email)
+      await loginPage.enterPassword(password)
+      await loginPage.clickLogin()
+    });
+  }
+})
+
 test('User Login errors validation for mandatory fields', { tag: ['@smoke', '@login', '@negative'] }, async ({ page, testData }) => {
-//Timeouts  
+  //Timeouts  
   test.setTimeout(10000)
   test.slow()
   page.setDefaultTimeout(10000)
