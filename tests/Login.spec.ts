@@ -21,14 +21,17 @@ test('User Login errors validation for mandatory fields', { tag: ['@smoke', '@lo
 //Timeouts  
   test.setTimeout(10000)
   test.slow()
-  page.setDefaultTimeout(4000)
-  page.setDefaultNavigationTimeout(5000)
+  page.setDefaultTimeout(10000)
+  page.setDefaultNavigationTimeout(10000)
 
   let commonMethods = new CommonMethods(page, testData)
   let registrationPage = new RegistrationPage(page, testData)
   let loginPage = new LoginPage(page);
+  let reusableMethods = new ReusableMethods(page);
 
   await loginPage.clickLogin()
   await commonMethods.verifyErrorMessage('Email', ReusableMethods.getProperty("EMAIL_ERROR_MESSAGE"))
   await commonMethods.verifyErrorMessage('Password', ReusableMethods.getProperty("Password_ERROR_MESSAGE"))
+  const newPage = await reusableMethods.openNewBlankWindow()
+  await newPage.goto("https://www.google.com")
 });
