@@ -108,29 +108,4 @@ export class ReusableMethods {
     async navigateToFrameByFrameLocator(frameLocator: string) {
         return this.page.frameLocator(frameLocator)
     }
-
-    async acceptAlert() {
-        this.page.on('dialog', async (dialog) => {
-            console.log('Dialog Type:', dialog.type());
-            console.log('Dialog message:', dialog.message());
-            await dialog.accept(); // or dialog.dismiss(); 
-        });
-    }
-
-    async dismissAlert() {
-        this.page.on('dialog', async (dialog) => {
-            console.log('Dialog Type:', dialog.type());
-            console.log('Dialog message:', dialog.message());
-            await dialog.dismiss(); 
-        });
-    }
-
-    async enterValueAndAcceptAlert(text: string) {
-        this.page.on('dialog', async (dialog) => {
-            console.log('Dialog Type:', dialog.type());
-            console.log('Dialog message:', dialog.message());
-            console.log(dialog.defaultValue())
-            await dialog.accept(text); 
-        });
-    }
 }
