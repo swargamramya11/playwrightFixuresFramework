@@ -15,11 +15,10 @@ export default defineConfig({
   testDir: './tests',
   fullyParallel: true,
   retries: 0,
-  workers: 2,
+  workers: 1,
 
   reporter: [
     ['html', { outputFolder: 'reports/html-report' }],
-    ['line'],
     ['list'],
     ['json', { outputFile: 'reports/json-report' }],
     ['junit', { outputFile: 'reports/junit-report' }],

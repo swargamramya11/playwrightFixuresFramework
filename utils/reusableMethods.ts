@@ -1,5 +1,5 @@
 import faker from 'faker';
-import { Page } from '@playwright/test'
+import { Page, expect } from '@playwright/test'
 import { Locator } from '@playwright/test'
 
 export class ReusableMethods {
@@ -141,5 +141,64 @@ export class ReusableMethods {
         ])
 
         return download
+    }
+
+    async selectDropDownByVisibleText(locator: Locator, option: any) {
+        await locator.selectOption(option);
+    }
+
+    async selectDropDownByValueAttribute(locator: Locator, value: any) {
+        await locator.selectOption({ value: value });
+    }
+
+    async selectDropDownByIndex(locator: Locator, index: number) {
+        await locator.selectOption({ index: index });
+    }
+
+    async selectDropDownByLabel(locator: Locator, label: any) {
+        await locator.selectOption({ label: label });
+    }
+
+    async selectMultipleDropDownOptions(locator: Locator, options: []) {
+        await locator.selectOption(options);
+    }
+
+    async verifycountDropdownElements(locator: Locator, expectedCount: number) {
+        await expect(locator).toHaveCount(expectedCount);
+    }
+
+    async verifyIfOptionIsPresentInDropdrown(locator: Locator, expectedOption: any) {
+        const optionsText = await locator.allInnerTexts();
+        const trimmedText = optionsText.map(text=>text.trim())
+        expect(trimmedText).toContain(expectedOption);
+    }
+
+    async printAllDropDownOptions(locator: Locator) {
+        const texts = await locator.allTextContents();
+        for (const text of texts) {
+            console.log(text);
+        }
+    }
+
+    async verifyIfDropdownValuesAreAlphabeticalOrder(locator: Locator) {
+        const options = await locator.allInnerTexts();
+        const trimmedText = options.map(text=>text.trim())
+        const original = [...trimmedText];
+        const sorted = [...trimmedText].sort();
+        expect(original).toEqual(sorted);
+    }
+
+    async checkForDuplicateOptions(locator: Locator) {
+        const options = await locator.allInnerTexts();
+        const set = new Set();
+        const duplicates = [];
+        for (const item of options) {
+            if (set.has(item)) {
+                duplicates.push(item);
+            } else {
+                set.add(item);
+            }
+        }
+        console.log("Duplicate items:", duplicates);
     }
 }
