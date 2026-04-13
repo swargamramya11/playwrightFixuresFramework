@@ -1,10 +1,6 @@
 import { test, expect } from '../utils/hooks';
 import { DataProvider } from '../utils/dataproviders'
-import { LoginPage } from '../pages/LoginPage'
-import { CommonMethods } from '../pages/CommonMethods'
-import { RegistrationPage } from '../pages/RegistrationPage'
 import { ReusableMethods } from '../utils/reusableMethods';
-import { Locator } from '@playwright/test'
 
 const jsonPath = 'testdata/logindata.json'
 const data = DataProvider.getTestDataFromJson(jsonPath)
