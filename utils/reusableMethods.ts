@@ -27,6 +27,8 @@ export class ReusableMethods {
         return newPage
     }
 
+    //Windows    
+
     async clickOnButtonToOpenNewTab(locator: Locator) {
         const [newPage] = await Promise.all([
             this.page.context().waitForEvent('page'),
@@ -92,6 +94,8 @@ export class ReusableMethods {
         throw new Error(`No window found with title: ${partialTitle}`);
     }
 
+    //Frames    
+
     async numberOfFrames() {
         const frames = this.page.frames();
         return frames.length
@@ -109,6 +113,7 @@ export class ReusableMethods {
         return this.page.frameLocator(frameLocator)
     }
 
+    //Alerts    
     async acceptAlert() {
         this.page.on('dialog', async (dialog) => {
             console.log('Dialog Type:', dialog.type());
@@ -134,6 +139,8 @@ export class ReusableMethods {
         });
     }
 
+    //File download   
+
     async clickAndDownloadFile(locator: Locator) {
         const [download] = await Promise.all([
             this.page.waitForEvent('download'),
@@ -142,6 +149,8 @@ export class ReusableMethods {
 
         return download
     }
+
+    //Dropdown oprations    
 
     async selectDropDownByVisibleText(locator: Locator, option: any) {
         await locator.selectOption(option);
@@ -169,7 +178,7 @@ export class ReusableMethods {
 
     async verifyIfOptionIsPresentInDropdrown(locator: Locator, expectedOption: any) {
         const optionsText = await locator.allInnerTexts();
-        const trimmedText = optionsText.map(text=>text.trim())
+        const trimmedText = optionsText.map(text => text.trim())
         expect(trimmedText).toContain(expectedOption);
     }
 
@@ -182,7 +191,7 @@ export class ReusableMethods {
 
     async verifyIfDropdownValuesAreAlphabeticalOrder(locator: Locator) {
         const options = await locator.allInnerTexts();
-        const trimmedText = options.map(text=>text.trim())
+        const trimmedText = options.map(text => text.trim())
         const original = [...trimmedText];
         const sorted = [...trimmedText].sort();
         expect(original).toEqual(sorted);
@@ -200,5 +209,82 @@ export class ReusableMethods {
             }
         }
         console.log("Duplicate items:", duplicates);
+    }
+
+    //Mouse operations    
+
+    async mouseHover(locator: Locator) {
+        await locator.hover()
+    }
+
+    async doubleClick(locator: Locator) {
+        await locator.dblclick()
+    }
+
+    async dragAndDrop(source: Locator, target: Locator) {
+        //Drag and drop manully   
+        // await source.hover()
+        // await this.page.mouse.down()
+        // await target.hover()
+        // await this.page.mouse.up()
+
+        await source.dragTo(target);
+    }
+
+    async moveMouseToCoordinates(index1: number, index2: number) {
+        await this.page.mouse.move(index1, index2);
+    }
+
+    //Scroll in page
+
+    async scrollBottomOfPage() {
+        await this.page.evaluate(() => {
+            window.scrollTo(0, document.body.scrollHeight);
+        })
+    }
+
+    async getCurrentPageScrollHeight() {
+        const currentHeight = await this.page.evaluate(() => {
+            document.body.scrollHeight;
+        })
+        return currentHeight
+    }
+
+    //Keyboard actions
+
+    async focusOnElement(locator: Locator) {
+        await locator.focus()
+    }
+
+    async enterTextUsingKeyboardActions(text: string) {
+        await this.page.keyboard.insertText(text)
+    }
+
+    async pressKeyDown(key: string) {
+        await this.page.keyboard.down(key);
+    }
+
+    async pressKeyUp(key: string) {
+        await this.page.keyboard.up(key);
+    }
+
+    async pressKey(key: string) {
+        await this.page.keyboard.press(key); //Press will perform both down and up actions
+    }
+
+    async pressCtrlC() {
+        await this.page.keyboard.press('Control+C');
+    }
+
+    async pressCtrlV() {
+        await this.page.keyboard.press('Control+V');
+    }
+
+    async pressCtrlA() {
+        await this.page.keyboard.press('Control+A');
+    }
+
+    async type(text: string) {
+        await this.page.keyboard.type(text);
     }
 }
