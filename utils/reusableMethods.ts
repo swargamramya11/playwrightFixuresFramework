@@ -121,7 +121,7 @@ export class ReusableMethods {
         this.page.on('dialog', async (dialog) => {
             console.log('Dialog Type:', dialog.type());
             console.log('Dialog message:', dialog.message());
-            await dialog.dismiss(); 
+            await dialog.dismiss();
         });
     }
 
@@ -130,7 +130,16 @@ export class ReusableMethods {
             console.log('Dialog Type:', dialog.type());
             console.log('Dialog message:', dialog.message());
             console.log(dialog.defaultValue())
-            await dialog.accept(text); 
+            await dialog.accept(text);
         });
+    }
+
+    async clickAndDownloadFile(locator: Locator) {
+        const [download] = await Promise.all([
+            this.page.waitForEvent('download'),
+            locator.click()
+        ])
+
+        return download
     }
 }
