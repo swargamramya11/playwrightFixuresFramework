@@ -17,6 +17,7 @@ for (const { email, password } of jsonData) {
     await loginPage.enterEmail(email)
     await loginPage.enterPassword(password)
     await loginPage.clickLogin()
+    await page.screenshot({ path: 'test-results/screenshots/screenshot.png', fullPage: true });
   });
 }
 

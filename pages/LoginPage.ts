@@ -14,7 +14,17 @@ export class LoginPage {
   }
 
   async enterEmail(enterEmail: string) {
+//Way 1 to handle visual testing    
+    await expect(this.page).toHaveScreenshot(); 
+
+//Way 2 to handle visual testing     
+    expect(await this.page.screenshot()).toMatchSnapshot("homepage.png"); 
+
+//Handle visual testing for particular element
+    expect(await this.email.screenshot()).toMatchSnapshot('email.png'); 
+
     await this.email.fill(enterEmail)
+    await this.email.screenshot({ path: 'test-results/screenshots/emailscreenshot.png' })
   }
 
   async enterPassword(enterPassword: string) {

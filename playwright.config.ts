@@ -7,7 +7,8 @@ dotenv.config({
 })
 
 export default defineConfig({
-  globalTeardown: require.resolve('./utils/global-teardown'),
+  snapshotDir: './visual-snapshots',
+  globalTeardown: './utils/global-teardown',
   globalSetup: './utils/global-setup.ts',
   timeout: 100 * 1000,
   expect: { timeout: 50000 },
@@ -18,15 +19,19 @@ export default defineConfig({
 
   reporter: [
     ['html', { outputFolder: 'reports/html-report' }],
+    ['line'],
+    ['list'],
+    ['json', { outputFile: 'reports/json-report' }],
+    ['junit', { outputFile: 'reports/junit-report' }],
     ['allure-playwright', { outputFolder: 'reports/allure-results' }]
   ],
 
   use: {
     headless: false,
     baseURL: process.env.BASE_URL,
-    trace: 'on-first-retry',
-    screenshot: 'only-on-failure',
-    video: 'retain-on-failure',
+    trace: 'retain-on-failure',  // Options: 'off', 'on', 'retain-on-failure', 'on-first-retry' 
+    screenshot: 'only-on-failure',  // Options: 'on', 'off', 'only-on-failure', 'on-first-failure'
+    video: 'retain-on-failure', // Options: 'on', 'off', 'retain-on-failure', 'on-first-retry' 
     viewport: { width: 1280, height: 720 },
     ignoreHTTPSErrors: true,
     permissions: ['geolocation'],
