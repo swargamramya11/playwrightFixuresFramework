@@ -1,6 +1,7 @@
 import faker from 'faker';
 import { Page, expect } from '@playwright/test'
 import { Locator } from '@playwright/test'
+import AxeBuilder from '@axe-core/playwright';
 
 export class ReusableMethods {
 
@@ -301,6 +302,41 @@ export class ReusableMethods {
     }
 
     async deleteCookies() {
-        await this.page.context().clearCookies(); 
+        await this.page.context().clearCookies();
+    }
+
+    //Accessibility
+
+    async returnAllTypesOfAccessibilityResults() {
+        // Printing all types of WCAG violations
+        let page = this.page
+        const accessibilityScanResults = await new AxeBuilder({ page }).analyze()
+        console.log(accessibilityScanResults)
+        console.log("Violations: " + accessibilityScanResults.violations.length)
+        // expect(accessibilityScanResults.violations.length).toEqual(0)
+    }
+
+    async returnFewTypesOfAccessibilityResults(testInfo, rules:any[]) {
+        //   Scanning few WCAG violations
+        let page = this.page
+        const accessibilityScanResults1 = await new AxeBuilder({ page }).withTags(rules).analyze()
+
+        testInfo.attach('Accessibility Scan Results', {
+            body: JSON.stringify(accessibilityScanResults1, null, 2),
+            contentType: 'application/json'
+        })
+        console.log("Violations: " + accessibilityScanResults1.violations.length)
+    }
+
+    async disableFewValidations(testInfo, disableViolation:any[]) {
+        //   Scanning WCAG violations with disabled rules
+        let page = this.page
+        const accessibilityScanResults1 = await new AxeBuilder({ page }).disableRules(disableViolation).analyze()
+
+        testInfo.attach('Accessibility Scan Results with few disabled Rules', {
+            body: JSON.stringify(accessibilityScanResults1, null, 2),
+            contentType: 'application/json'
+        })
+        console.log("Violations: " + accessibilityScanResults1.violations.length)
     }
 }
