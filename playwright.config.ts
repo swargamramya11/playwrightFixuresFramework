@@ -26,7 +26,7 @@ export default defineConfig({
   ],
 
   use: {
-    locale:'en-US',
+    locale: 'en-US',
     // proxy: {server:'https://myproxy.com/8080'},
     headless: false,
     baseURL: process.env.BASE_URL,
@@ -45,7 +45,11 @@ export default defineConfig({
 
   projects: [
     { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
-    // {name: 'firefox', use: { ...devices['Desktop Firefox'] }},
-    // {name: 'webkit', use: { ...devices['Desktop Safari'] }},
+    { name: 'firefox', use: { ...devices['Desktop Firefox'] } },
+    { name: 'webkit', use: { ...devices['Desktop Safari'] } },
+    { name: 'Galaxy Note 3', use: { ...devices['Galaxy Note 3'] } },
+    { name: 'iPhone 13', use: { ...devices['iPhone 13'] } },
+    { name: 'iPad (gen 5)', use: { ...devices['iPad (gen 5)'] } },
+    { name: 'Pixel 5', use: { ...devices['Pixel 5'] } },
   ]
 });

@@ -11,7 +11,7 @@ npm install faker@5
 npm install dotenv
 
 Run commands
-Command to run with tags: $env:BROWSER="chrome";$env:ENV="tap"; npx playwright test --grep "@tabHandleUsingTitle"
+Command to run with tags: $env:ENV="tap"; npx playwright test --grep "@tabHandleUsingTitle"
 Command to run with filename: $env:ENV="local";npx playwright test tests/Login.spec.ts
-$env:BROWSER="chrome";$env:ENV="rsa"; npx playwright test --tags "@smoke"
+Command to run with particular device passing in command line: $env:ENV="tap"; npx playwright test --project="Pixel 5" --grep "@mobileTesting"
 $env:ENV="local";npm run test:run
