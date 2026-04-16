@@ -340,7 +340,8 @@ export class ReusableMethods {
         console.log("Violations: " + accessibilityScanResults1.violations.length)
     }
 
-    //Gettext
+    //   Get text
+
     async getFirstElement(locator: Locator) {
         await locator.first().innerText()
     }
