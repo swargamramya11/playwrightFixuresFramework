@@ -1,8 +1,6 @@
 import { test, expect } from '../utils/hooks';
-import { ReusableMethods } from '../utils/reusableMethods';
 
-test('Dropdown selection', { tag: ['@dropdowns'] }, async ({ page }, testInfo) => {
-  let reusableMethods = new ReusableMethods(page);
+test('Dropdown selection', { tag: ['@dropdowns'] }, async ({ page, reusableMethods }, testInfo) => {
   await reusableMethods.selectDropDownByVisibleText(page.locator("#country"), 'India')
 
   await reusableMethods.checkForDuplicateOptions(page.locator("#country"))

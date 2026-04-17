@@ -1,25 +1,23 @@
-import { test as base } from '@playwright/test';
 import { ReusableMethods } from './reusableMethods'
-import { TestData } from '../utils/testData'
+import { MyTest } from '../utils/pageFixures'
 
-type MyFixtures = {
-  testData: TestData
-}
-
-export const test = base.extend<MyFixtures>({
-  testData: async ({}, use) => {
-    await use({} as TestData)
-  }
+MyTest.beforeAll(async () => {
+  console.log('Running Before All');
 })
 
-test.beforeEach(async ({ page }) => {
+MyTest.beforeEach(async ({ page }) => {
   console.log('Running before each test');
   await page.goto(ReusableMethods.getProperty("URL"));
 })
 
-test.afterEach(async ({ page }) => {
+MyTest.afterEach(async ({ page }) => {
   console.log('Running after each test');
   await page.close()
 })
 
-export const expect = test.expect;
+MyTest.afterAll(async () => {
+  console.log('Running After All');
+})
+
+export const test = MyTest;
+export const expect = MyTest.expect;

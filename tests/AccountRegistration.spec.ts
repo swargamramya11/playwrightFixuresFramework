@@ -1,14 +1,9 @@
 import { test } from '../utils/hooks';
 import { RandomDataUtil } from '../utils/randomDataGenerator'
-import { RegistrationPage } from '../pages/RegistrationPage'
-import { LoginPage } from '../pages/LoginPage'
 import { ReusableMethods } from '../utils/reusableMethods';
-import { CommonMethods } from '../pages/CommonMethods'
 
-test('User Registration', { tag: ['@smoke', '@registration'] }, async ({ page, testData }) => {
+test('User Registration', { tag: ['@smoke', '@registration'] }, async ({ page, testData, loginPage, registrationPage }) => {
   let password = RandomDataUtil.getPassword()
-  let registrationPage = new RegistrationPage(page, testData)
-  let loginPage = new LoginPage(page)
 
   await test.step('Click on register here button', async () => {
     registrationPage.clickOnRegisterHere()
@@ -32,10 +27,7 @@ test('User Registration', { tag: ['@smoke', '@registration'] }, async ({ page, t
   await loginPage.clickLogin()
 });
 
-test('User Registration Page errors validation for mandatory fields', { tag: ['@smoke', '@registration'] }, async ({ page, testData }) => {
-  let commonMethods = new CommonMethods(page, testData)
-  let registrationPage = new RegistrationPage(page, testData)
-
+test('User Registration Page errors validation for mandatory fields', { tag: ['@smoke', '@registration'] }, async ({ page, commonMethods, registrationPage, testData }) => {
   await registrationPage.clickOnRegisterHere()
   await registrationPage.clickRegister()
   await commonMethods.verifyErrorMessage('First Name', ReusableMethods.getProperty("FIRSTNAME_ERROR_MESSAGE"))

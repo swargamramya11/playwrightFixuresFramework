@@ -1,10 +1,6 @@
-import { test, expect } from '../utils/hooks';
-import { ReusableMethods } from '../utils/reusableMethods';
-import AxeBuilder from '@axe-core/playwright';
+import { test } from '../utils/hooks';
 
-test('Dropdown selection', { tag: ['@accessibility'] }, async ({ page }, testInfo) => {
-  let reusableMethods = new ReusableMethods(page)
-
+test('Dropdown selection', { tag: ['@accessibility'] }, async ({ page, reusableMethods }, testInfo) => {
   await reusableMethods.returnAllTypesOfAccessibilityResults()
   await reusableMethods.returnFewTypesOfAccessibilityResults(testInfo, ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
   await reusableMethods.disableFewValidations(testInfo, ['duplicate-id'])

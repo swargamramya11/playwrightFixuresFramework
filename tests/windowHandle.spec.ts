@@ -1,9 +1,6 @@
 import { test, expect } from '../utils/hooks';
-import { ReusableMethods } from '../utils/reusableMethods';
 
-test("Tab and Window handling using index", { tag: ['@tabHandle'] }, async ({ page }) => {
-  let reusableMethods = new ReusableMethods(page);
-
+test("Tab and Window handling using index", { tag: ['@tabHandle'] }, async ({ page, reusableMethods }) => {
   const newTab = await reusableMethods.clickOnButtonToOpenNewTab(page.getByText("New Tab"))
   await expect(newTab.locator("h1.title")).toHaveText("SDET-QA Blog");
   newTab.close()
@@ -17,9 +14,7 @@ test("Tab and Window handling using index", { tag: ['@tabHandle'] }, async ({ pa
   await expect(tab2.locator("h1")).toContainText("Register");
 })
 
-test("Tab and Window handling using URL", { tag: ['@tabHandleUsingURL'] }, async ({ page }) => {
-  let reusableMethods = new ReusableMethods(page);
-
+test("Tab and Window handling using URL", { tag: ['@tabHandleUsingURL'] }, async ({ page, reusableMethods }) => {
   await reusableMethods.clickOnButtonToOpenNewTab(page.getByText("New Tab"))
   const newTab = await reusableMethods.switchToWindowByURL("pavan")
   await expect(newTab.locator("h1.title")).toHaveText("SDET-QA Blog");
@@ -36,9 +31,7 @@ test("Tab and Window handling using URL", { tag: ['@tabHandleUsingURL'] }, async
   await expect(newWindowSeleniumConf.locator("h1")).toContainText("Register");
 })
 
-test("Tab and Window handling using Title", { tag: ['@tabHandleUsingTitle'] }, async ({ page }) => {
-  let reusableMethods = new ReusableMethods(page);
-
+test("Tab and Window handling using Title", { tag: ['@tabHandleUsingTitle'] }, async ({ page, reusableMethods }) => {
   await reusableMethods.clickOnButtonToOpenNewTab(page.getByText("New Tab"))
   const newTab = await reusableMethods.switchToWindowByTitle("SDET-QA Blog")
   await expect(newTab.locator("h1.title")).toHaveText("SDET-QA Blog");

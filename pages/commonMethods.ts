@@ -3,11 +3,9 @@ import { TestData } from '../utils/testData';
 
 export class CommonMethods {
   private readonly page: Page;
-  private testData: TestData;
 
   constructor(page: Page, testData: TestData) {
     this.page = page
-    this.testData = testData
   }
 
   async verifyErrorMessage(fieldName: string, expectedErrorMessage:string) {

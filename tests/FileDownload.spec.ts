@@ -1,9 +1,6 @@
 import { test, expect } from '../utils/hooks';
-import { ReusableMethods } from '../utils/reusableMethods';
 
-test('Upload single file', { tag: ['@downloadFile'] }, async ({ page }) => {
-  let reusableMethods = new ReusableMethods(page);
-
+test('Upload single file', { tag: ['@downloadFile'] }, async ({ page, reusableMethods }) => {
   await page.locator("#inputText").fill("Welcome")
   await page.locator("#generateTxt").click()
   const download = await reusableMethods.clickAndDownloadFile(page.locator("#txtDownloadLink"))
