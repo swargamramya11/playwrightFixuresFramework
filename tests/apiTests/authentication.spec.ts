@@ -11,7 +11,7 @@ test('Basic Authentication', { tag: ['@basicAuthentication'] }, async ({ reusabl
 })
 
 test('Bearer Token Authentication 1', { tag: ['@bearerAuthentication1'] }, async ({ reusableMethods }) => {
-    const bearerToken = "";
+    const bearerToken = "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";
 
     const [response, responseBody] = await reusableMethods.getRequestWithQueryParameters('https://api.github.com/user/repos', {
         headers: {
@@ -23,7 +23,7 @@ test('Bearer Token Authentication 1', { tag: ['@bearerAuthentication1'] }, async
 });
 
 test('Bearer Token Authentication 2', { tag: ['@bearerAuthentication2'] }, async ({ reusableMethods }) => {
-    const token = ''; // Replace with a real token
+    const token = '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'; // Replace with a real token
 
     const [response, responseBody] = await reusableMethods.getRequestWithQueryParameters('https://api.github.com/user', {
         headers: {
@@ -57,7 +57,7 @@ test('API Key Auth - Header', { tag: ['@apiAuthentication'] }, async ({ reusable
     const [response, responseBody] = await reusableMethods.getRequestWithQueryParameters('https://api.weatherapi.com/v1/current.json', {
         params: {
             q: 'India',
-            appid: '', // <-- hardcoded API key
+            appid: '803a3bf41c9b71cff1216821bcb0b1f2', // <-- hardcoded API key
         },
     })
     
