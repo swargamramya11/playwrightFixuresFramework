@@ -1,4 +1,4 @@
-import { test, expect } from '../utils/hooks';
+import { test, expect } from '../../utils/hooks';
 
 test('Dropdown selection', { tag: ['@dropdowns'] }, async ({ page, reusableMethods }, testInfo) => {
   await reusableMethods.selectDropDownByVisibleText(page.locator("#country"), 'India')

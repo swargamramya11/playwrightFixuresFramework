@@ -1,4 +1,5 @@
 import faker from 'faker';
+import { DateTime } from 'luxon';
 
 export class RandomDataUtil {
 
@@ -38,5 +39,21 @@ export class RandomDataUtil {
 
   static getBoolean(): boolean {
     return Math.random() > 0.5;
+  }
+
+  static getPrice(): number {
+    return faker.datatype.number({ min: 100, max: 5000 })
+  }
+
+  static getDepositPaid(): boolean {
+    return faker.datatype.boolean()
+  }
+
+  static getCheckinDate(format: string): string {
+    return DateTime.now().toFormat(format)
+  }
+
+  static getCheckoutDate(format: string, addDays: number): string {
+    return DateTime.now().plus({ day: addDays }).toFormat(format)
   }
 }

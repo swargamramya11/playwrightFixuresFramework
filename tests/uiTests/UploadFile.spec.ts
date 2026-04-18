@@ -1,4 +1,4 @@
-import { test, expect } from '../utils/hooks';
+import { test, expect } from '../../utils/hooks';
 
 test('Upload single file', { tag: ['@uploadSingleFile'] }, async ({ page }) => {
   await page.locator("#singleFileInput").setInputFiles('resources/uploads/text.txt')

@@ -1,4 +1,4 @@
-import { test } from '../utils/hooks';
+import { test } from '../../utils/hooks';
 
 test("Add Cookies", { tag: ['@cookies'] }, async ({ page, reusableMethods }) => {
   await reusableMethods.addCookies([

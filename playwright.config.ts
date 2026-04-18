@@ -29,7 +29,7 @@ export default defineConfig({
     locale: 'en-US',
     // proxy: {server:'https://myproxy.com/8080'},
     headless: false,
-    baseURL: process.env.BASE_URL,
+    baseURL: process.env.URL,
     trace: 'retain-on-failure',  // Options: 'off', 'on', 'retain-on-failure', 'on-first-retry' 
     screenshot: 'only-on-failure',  // Options: 'on', 'off', 'only-on-failure', 'on-first-failure'
     video: 'retain-on-failure', // Options: 'on', 'off', 'retain-on-failure', 'on-first-retry' 
@@ -51,5 +51,6 @@ export default defineConfig({
     { name: 'iPhone 13', use: { ...devices['iPhone 13'] } },
     { name: 'iPad (gen 5)', use: { ...devices['iPad (gen 5)'] } },
     { name: 'Pixel 5', use: { ...devices['Pixel 5'] } },
+    { name: 'api', use: {  } },
   ]
 });

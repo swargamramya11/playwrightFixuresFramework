@@ -20,6 +20,6 @@ export const MyTest = base.extend<MyPageFixtures>({
   commonMethods: async ({ page, testData }, use) => { await use(new CommonMethods(page, testData)) },
   registrationPage: async ({ page, testData }, use) => { await use(new RegistrationPage(page, testData)) },
   productsListPage: async ({ page, testData }, use) => { await use(new ProductsListPage(page, testData)) },
-  reusableMethods: async ({ page }, use) => { await use(new ReusableMethods(page)) },
+  reusableMethods: async ({ page, request }, use) => { await use(new ReusableMethods(page, request)) },
   testData: async ({ }, use) => { await use({} as TestData) }
 })

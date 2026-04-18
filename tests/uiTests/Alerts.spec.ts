@@ -1,4 +1,4 @@
-import { test, expect } from '../utils/hooks';
+import { test, expect } from '../../utils/hooks';
 
 test("Simple Alert", { tag: ['@salerts'] }, async ({ page, reusableMethods }) => {
   reusableMethods.acceptAlert()

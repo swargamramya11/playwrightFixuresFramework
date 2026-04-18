@@ -1,5 +1,5 @@
 import { Locator } from '@playwright/test';
-import { test, expect } from '../utils/hooks';
+import { test, expect } from '../../utils/hooks';
 
 test('Static web table', { tag: ['@webTables'] }, async ({ page }) => {
     const table: Locator = page.locator("table[name='BookTable'] tbody");

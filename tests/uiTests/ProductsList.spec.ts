@@ -1,6 +1,6 @@
-import { test } from '../utils/hooks';
-import { DataProvider } from '../utils/dataproviders'
-import { ReusableMethods } from '../utils/reusableMethods';
+import { test } from '../../utils/hooks';
+import { DataProvider } from '../../utils/dataproviders'
+import { ReusableMethods } from '../../utils/reusableMethods';
 
 test('Print products list in excel', { tag: ['@smoke, @writeExcel'] }, async ({ page, reusableMethods, testData,loginPage, productsListPage }) => {
   await loginPage.enterEmail(ReusableMethods.getProperty("EMAIL"))

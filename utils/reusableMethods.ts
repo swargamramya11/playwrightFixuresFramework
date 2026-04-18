@@ -1,14 +1,20 @@
 import faker from 'faker';
-import { Page, expect } from '@playwright/test'
+import { APIRequestContext, Page, expect } from '@playwright/test'
 import { Locator } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright';
 
 export class ReusableMethods {
 
     private readonly page: Page;
+    private readonly request: APIRequestContext;
 
-    constructor(page: Page) {
+    constructor(page: Page, request: APIRequestContext) {
         this.page = page;
+        this.request = request
+    }
+
+    async goToURL(property: string) {
+        await this.page.goto(ReusableMethods.getProperty(property));
     }
 
     static getProperty(property: string): string {
@@ -352,5 +358,47 @@ export class ReusableMethods {
 
     async getnthElement(locator: Locator, index: number) {
         await locator.nth(index).innerText()
+    }
+
+    // API
+
+    async postRequest(endPoint: any, requestBody: any) {
+        const response = await this.request.post(endPoint, requestBody)
+        const responseBody = await response.json()
+        console.log(responseBody)
+        return [response, responseBody]
+    }
+
+    async putRequest(endPoint: any, requestBody: any) {
+        const response = await this.request.put(endPoint, requestBody)
+        const responseBody = await response.json()
+        console.log(responseBody)
+        return [response, responseBody]
+    }
+
+    async patchRequest(endPoint: any, requestBody: any) {
+        const response = await this.request.patch(endPoint, requestBody)
+        const responseBody = await response.json()
+        console.log(responseBody)
+        return [response, responseBody]
+    }
+
+    async deleteRequest(endPoint: any, requestBody: any) {
+        const response = await this.request.delete(endPoint, requestBody)
+        return response
+    }
+
+    async getRequest(endPoint: any) {
+        const response = await this.request.get(endPoint)
+        const responseBody = await response.json()
+        console.log(responseBody)
+        return [response, responseBody]
+    }
+
+    async getRequestWithQueryParameters(endPoint: any, requestBody: any) {
+        const response = await this.request.get(endPoint, requestBody)
+        const responseBody = await response.json()
+        console.log(responseBody)
+        return [response, responseBody]
     }
 }

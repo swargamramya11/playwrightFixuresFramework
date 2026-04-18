@@ -1,4 +1,4 @@
-import { test, expect } from '../utils/hooks';
+import { test, expect } from '../../utils/hooks';
 
 test("Tab and Window handling using index", { tag: ['@tabHandle'] }, async ({ page, reusableMethods }) => {
   const newTab = await reusableMethods.clickOnButtonToOpenNewTab(page.getByText("New Tab"))

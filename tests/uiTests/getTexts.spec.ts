@@ -1,5 +1,5 @@
 import { Locator } from '@playwright/test';
-import { test } from '../utils/hooks';
+import { test } from '../../utils/hooks';
 
 test('InnerText, textContent', { tag: ['@textConcepts'] }, async ({ page }) => {
   const products: Locator = page.locator('.product-title');

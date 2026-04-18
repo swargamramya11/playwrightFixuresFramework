@@ -1,6 +1,6 @@
-import { test } from '../utils/hooks';
-import { RandomDataUtil } from '../utils/randomDataGenerator'
-import { ReusableMethods } from '../utils/reusableMethods';
+import { test } from '../../utils/hooks';
+import { RandomDataUtil } from '../../utils/randomDataGenerator'
+import { ReusableMethods } from '../../utils/reusableMethods';
 
 test('User Registration', { tag: ['@smoke', '@registration'] }, async ({ page, testData, loginPage, registrationPage }) => {
   let password = RandomDataUtil.getPassword()

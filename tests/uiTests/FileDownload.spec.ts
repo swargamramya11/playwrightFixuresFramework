@@ -1,4 +1,4 @@
-import { test, expect } from '../utils/hooks';
+import { test, expect } from '../../utils/hooks';
 
 test('Upload single file', { tag: ['@downloadFile'] }, async ({ page, reusableMethods }) => {
   await page.locator("#inputText").fill("Welcome")

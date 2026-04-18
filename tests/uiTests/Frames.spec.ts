@@ -1,5 +1,5 @@
-import { test } from '../utils/hooks';
-import { ReusableMethods } from '../utils/reusableMethods';
+import { test } from '../../utils/hooks';
+import { ReusableMethods } from '../../utils/reusableMethods';
 
 test("Frames", { tag: ['@frames'] }, async ({ page, reusableMethods }) => {
   console.log("Number of frames: " + await reusableMethods.numberOfFrames())

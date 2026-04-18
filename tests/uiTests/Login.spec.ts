@@ -1,6 +1,6 @@
-import { test } from '../utils/hooks';
-import { DataProvider } from '../utils/dataproviders'
-import { ReusableMethods } from '../utils/reusableMethods';
+import { test } from '../../utils/hooks';
+import { DataProvider } from '../../utils/dataproviders'
+import { ReusableMethods } from '../../utils/reusableMethods';
 
 test.describe.configure({ mode: 'parallel' });
 
