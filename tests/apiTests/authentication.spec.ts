@@ -57,7 +57,7 @@ test('API Key Auth - Header', { tag: ['@apiAuthentication'] }, async ({ reusable
     const [response, responseBody] = await reusableMethods.getRequestWithQueryParameters('https://api.weatherapi.com/v1/current.json', {
         params: {
             q: 'India',
-            appid: '803a3bf41c9b71cff1216821bcb0b1f2', // <-- hardcoded API key
+            appid: '', // <-- hardcoded API key
         },
     })
     
